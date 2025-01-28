@@ -36,4 +36,4 @@ def convert_csv_to_json(csv_path, json_path):
         json.dump(output_data, jsonfile, indent=2, ensure_ascii=False)
 
 if __name__ == "__main__":
-    convert_csv_to_json('input.csv', 'tags_data.json')
+    convert_csv_to_json('tags/danbooru-12-10-24-underscore.csv', 'tags_data.json')
