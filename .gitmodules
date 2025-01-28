@@ -1,0 +1,3 @@
+[submodule "tags"]
+	path = tags
+	url = https://github.com/BetaDoggo/danbooru-tag-list
