@@ -1,0 +1,28 @@
+name: Update Tag Data
+on:
+  push:
+    paths:
+      - 'tags/**'  # This assumes your submodule is in a directory called 'data-submodule'
+  repository_dispatch:  # This allows manual triggering via GitHub API
+    types: [update_data]
+  workflow_dispatch:    # This adds a manual trigger button in GitHub UI
+
+permissions:
+  contents: write    # Explicitly grant permission to commit and push
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - uses: actions/setup-python@v4
+      - run: python process_data.py
+      - name: Commit processed data
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add data/
+          git commit -m "Update processed data" || echo "No changes to commit"
+          git push
