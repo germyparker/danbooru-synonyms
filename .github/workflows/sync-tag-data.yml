@@ -2,13 +2,13 @@ name: Update Tag Data
 on:
   push:
     paths:
-      - 'tags/**'  # This assumes your submodule is in a directory called 'data-submodule'
-  repository_dispatch:  # This allows manual triggering via GitHub API
+      - 'tags/**'
+  repository_dispatch: 
     types: [update_data]
-  workflow_dispatch:    # This adds a manual trigger button in GitHub UI
+  workflow_dispatch: 
 
 permissions:
-  contents: write    # Explicitly grant permission to commit and push
+  contents: write   
 
 jobs:
   update:
